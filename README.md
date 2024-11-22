@@ -1,6 +1,6 @@
 # Questionnaire
 
-Тестовое задание от компании Taptima.
+Тестовое задание от компании Taptima.  
 Студента: https://t.me/EgorMariel
 
 ## Задание
@@ -36,10 +36,11 @@
 
 ## TODO
 
-Что еще можно сделать с заданием:
+Что еще сделать с заданием:
 
 - [ ] Разобраться с ingress-ом.
-- [ ] Сделать запуск последовательным(mongodb, backend, frontend), а не одновременным.
 - [ ] Написать Helm-чарт.
+- [ ] Написать Kustomize kustomization.yaml.
+- [ ] ArgoCD
 - [ ] Написать ci/cd на Github Actions.
 - [ ] Написать ci/cd на Gitlab CI.
