@@ -1,6 +1,7 @@
-# questionnaire
+# Questionnaire
 
 Тестовое задание от компании Taptima.
+Студента: https://t.me/EgorMariel
 
 ## Задание
 
@@ -31,7 +32,7 @@ git clone https://github.com/taptima/devops-test-questionnaire.git
 
 ## Дополнительная информация
 
-**Не получается описать файлы ingress - подскажите пожалуйста в чем моя ошибка.**
+**Не получается описать файлы ingress - подскажите, пожалуйста, в чем моя ошибка.**
 
 ## TODO
 
