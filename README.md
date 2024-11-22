@@ -16,7 +16,7 @@
 
 ## Исходный код в GitHub
 
-git clone https://github.com/taptima/devops-test-questionnaire.git
+`git clone https://github.com/taptima/devops-test-questionnaire.git`
 
 Описание задания https://taptima.notion.site/Devops-9d61f75e266849cc9173ac6c70fc872c
 
@@ -38,7 +38,8 @@ git clone https://github.com/taptima/devops-test-questionnaire.git
 
 Что еще можно сделать с заданием:
 
-- [ ] Разобраться с ingress-ом
-- [ ] Написать Helm-чарт
-- [ ] Написать ci/cd на Github Actions
-- [ ] Написать ci/cd на Gitlab CI
+- [ ] Разобраться с ingress-ом.
+- [ ] Сделать запуск последовательным(mongodb, backend, frontend), а не одновременным.
+- [ ] Написать Helm-чарт.
+- [ ] Написать ci/cd на Github Actions.
+- [ ] Написать ci/cd на Gitlab CI.

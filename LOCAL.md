@@ -17,20 +17,25 @@
 
 ## 2. Устанавливаем mongodb
 
-sudo dpkg -i mongodb-org-server_8.0.3_amd64.deb
+`sudo dpkg -i mongodb-org-server_8.0.3_amd64.deb`
 
 ## 3. Запускаем mongodb
 
+```
 sudo systemctl enable mongod
 sudo systemctl start mongod
+```
 
 ## 4. Устанавливаем nodejs 12
 
+```
 curl -fsSL https://fnm.vercel.app/install | bash
 source /home/egor/.bashrc
 fnm use --install-if-missing 12
 node -v
 exit
+```
+
 Выходим из терминала.
 
 ---
@@ -41,13 +46,15 @@ exit
 
 ## 5. Скачиваем questionnaire
 
-git clone https://github.com/taptima/devops-test-questionnaire.git
+`git clone https://github.com/taptima/devops-test-questionnaire.git`
 
 ## 6. Запускаем dev-режим questionnaire-backend
 
+```
 cd devops-test-questionnaire/questionnaire-backend
 npm install
 npm run dev
+```
 
 ---
 
@@ -57,9 +64,11 @@ npm run dev
 
 ## 7. Запускаем dev-режим questionnaire-frontend
 
+```
 cd devops-test-questionnaire/questionnaire-frontend
 npm install
 npm run start
+```
 
 ---
 
