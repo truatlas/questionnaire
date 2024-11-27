@@ -1,7 +1,7 @@
 # Questionnaire
 
 Тестовое задание от компании Taptima.  
-Студента: https://t.me/EgorMariel
+Студента: [https://t.me/EgorMariel]
 
 ## Задание
 
@@ -18,9 +18,9 @@
 
 `git clone https://github.com/taptima/devops-test-questionnaire.git`
 
-Описание задания https://taptima.notion.site/Devops-9d61f75e266849cc9173ac6c70fc872c
+Описание задания [https://taptima.notion.site/Devops-9d61f75e266849cc9173ac6c70fc872c]
 
-Ссылка на ролик на YouTube https://www.youtube.com/watch?v=CTRkB0znzqY
+Ссылка на ролик на YouTube [https://www.youtube.com/watch?v=CTRkB0znzqY]
 
 ## Запуск приложения локально
 

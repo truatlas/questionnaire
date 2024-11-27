@@ -1,28 +1,36 @@
 # Запуск на UBUNTU 24.10 DeskTop на minikube docker
 
-## Добавляем домен в hosts
+## У вас уже установлены wget, minikube(enabled ingress), docker в системе
 
-`cat questionnaire.local >> /etc/hosts`
+## Добавляем домен questionnaire.local в hostsmini
+
+`echo 127.0.0.1 questionnaire.local | sudo tee -a /etc/hosts`
 
 ## Создаем папку для приложения
 
 `mkdir -p ~/questionnaire`
 
-## Клонируем репозиторий
+## Клонируем репозиторий с заданием
 
 `git clone https://github.com/taptima/devops-test-questionnaire.git ~/questionnaire`
 
 ## В каталоге questionnaire-backend/src/environments заменяем environment.prod.ts на environment.ts
 
-`cp ~/questionnaire/questionnaire-backend/src/environment.prod.ts ~/questionnaire/questionnaire-backend/src/environment.ts`
+`cp ~/questionnaire/questionnaire-backend/src/environments/environment.prod.ts ~/questionnaire/questionnaire-backend/src/environments/environment.ts`
 
-## Забираем файлы Dockerfile.frontend и Dockerfile.backend
+## Забираем файлы Dockerfile.frontend и Dockerfile.backend из этого репозитория
 
-## В каталоге questionnaire-backend/Dockerfile.backend и переименовываем в Dockerfile
+```bash
+cd ~/questionnaire
+wget https://raw.githubusercontent.com/truatlas/questionnaire/refs/heads/main/Dockerfile.backend
+wget https://raw.githubusercontent.com/truatlas/questionnaire/refs/heads/main/Dockerfile.frontend
+```
+
+## Копируем файл для сборки Dockerfile.backend в каталог questionnaire-backend/Dockerfile.backend и переименовываем в Dockerfile
 
 `cp ~/questionnaire/Dockerfile.backend ~/questionnaire/questionnaire-backend/Dockerfile`
 
-## В каталоге questionnaire-frontend/Dockerfile.frontend и переименовываем в Dockerfile
+## Копируем файл для сборки Dockerfile.frontend в каталог questionnaire-frontend/Dockerfile.frontend и переименовываем в Dockerfile
 
 `cp ~/questionnaire/Dockerfile.frontend ~/questionnaire/questionnaire-frontend/Dockerfile`
 
@@ -30,18 +38,20 @@
 
 ```bash
 cd ~/questionnaire/questionnaire-backend
-docker build -t questionnaire-backend .
-docker image tag questionnaire-backend /truatlas/questionnaire:backend-v0.0.1
+docker build -t questionnaire-backend:v0.0.1 .
+docker image tag questionnaire-backend:v0.0.1 ruatlas/questionnaire:backend-v0.0.1
 cd ~/questionnaire/questionnaire-frontend
-docker build -t questionnaire-frontend .
-docker image tag questionnaire-frontend /truatlas/questionnaire:frontend-v0.0.1
-push truatlas/questionnaire:backend-v0.0.1
-push truatlas/questionnaire:frontend-v0.0.1
+docker build -t questionnaire-frontend:v0.0.1 .
+docker image tag questionnaire-frontend:v0.0.1 ruatlas/questionnaire:frontend-v0.0.1
+docker push ruatlas/questionnaire:backend-v0.0.1
+docker push ruatlas/questionnaire:frontend-v0.0.1
 ```
 
 ## Образы готовы и залиты в открытый репозиторий
 
-## Забираем директорию k8s с yaml-файлами
+[https://hub.docker.com/repository/docker/ruatlas/questionnaire/general]
+
+## Забираем директорию k8s из этого репозитория и копируем ее в директорию questionnaire
 
 `cp k8s/ ~/questionnaire/`
 
@@ -51,16 +61,21 @@ push truatlas/questionnaire:frontend-v0.0.1
 
 ## Запускаем minikube
 
-`minikube start`
+```bashc
+minikube start
+minikube addons enable ingress
+```
 
-## Применяем манифесты из папки k8s
+## Применяем манифесты из папки k8s, ждем пока все поды будут готовы и запускаем tunnel
 
-`kubectl apply -f k8s`
+```bash
+kubectl apply -f k8s
 
-## Запускаем minikube tunnel
+kubectl get pods -n questionnaire -w
 
-`minikube tunnel`
+minikube tunnel
+```
 
-## Проверяем работу приложения - переходим на http://questionnaire.local/ в браузере
+## Проверяем работу приложения - переходим на [http://questionnaire.local/] в браузере
 
 ### `minikube service questionnaire-frontend --url`
