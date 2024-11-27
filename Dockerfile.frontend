@@ -1,0 +1,28 @@
+# Этап сборки
+FROM node:12.22-alpine3.15 AS build
+
+# Устанавливаем рабочую директорию внутри контейнера
+WORKDIR /usr/src/app
+
+# Копируем файлы package.json и package-lock.json для установки зависимостей
+COPY package*.json ./
+
+# Устанавливаем зависимости проекта
+RUN npm install
+
+# Копируем все остальные файлы проекта в контейнер
+COPY . .
+
+# Собираем проект для продакшн-окружения
+RUN npm run build:prod
+
+# Этап финального образа
+FROM nginx:1.27.3-alpine
+
+# Копируем собранные файлы из этапа сборки в каталог Nginx для статических файлов
+COPY --from=build /usr/src/app/dist/questionnaire-frontend /usr/share/nginx/html
+
+# Открываем порт 80 для доступа к приложению
+EXPOSE 80
+
+# Nginx автоматически запускается при запуске контейнера

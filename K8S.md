@@ -31,10 +31,10 @@
 ```bash
 cd ~/questionnaire/questionnaire-backend
 docker build -t questionnaire-backend .
-docker -t questionnaire-backend /truatlas/questionnaire:backend-v0.0.1
+docker image tag questionnaire-backend /truatlas/questionnaire:backend-v0.0.1
 cd ~/questionnaire/questionnaire-frontend
 docker build -t questionnaire-frontend .
-docker -t questionnaire-frontend /truatlas/questionnaire:frontend-v0.0.1
+docker image tag questionnaire-frontend /truatlas/questionnaire:frontend-v0.0.1
 push truatlas/questionnaire:backend-v0.0.1
 push truatlas/questionnaire:frontend-v0.0.1
 ```
