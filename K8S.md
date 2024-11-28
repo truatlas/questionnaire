@@ -2,7 +2,7 @@
 
 ## У вас уже установлены wget, minikube(enabled ingress), docker в системе
 
-## Добавляем домен questionnaire.local в hostsmini
+## Добавляем домен questionnaire.local в hosts
 
 `echo 127.0.0.1 questionnaire.local | sudo tee -a /etc/hosts`
 
