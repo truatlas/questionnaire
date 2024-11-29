@@ -5,11 +5,10 @@ metadata:
   namespace: questionnaire
 spec:
   rules:
-    - host: questionnaire.local
-      http:
+    - http:
         paths:
-          - path: /
-            pathType: Prefix
+          - pathType: Prefix
+            path: /
             backend:
               service:
                 name: frontend-service
