@@ -4,17 +4,17 @@ metadata:
   name: backend-ingress
   namespace: questionnaire
   annotations:
-    nginx.ingress.kubernetes.io/websocket-services: "backend-service"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   rules:
     - host: questionnaire.local
       http:
         paths:
-          - path: /socket.io/
-            pathType: ImplementationSpecific
+          - path: /api(/|$)(.*)
+            pathType: Prefix
             backend:
               service:
                 name: backend-service
